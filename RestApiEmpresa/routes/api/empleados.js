@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { check, validationResult } = require('express-validator');
 
 const Empleado = require('../../models/empleado');
 
@@ -14,7 +15,21 @@ router.get('/', (req, res) => {
 });
 
 // Crear nuevo empleado
-router.post('/', async (req, res) => {
+router.post('/', [
+    check('nombre', 'Nombre es obligatorio').exists(),
+    check('dni', 'DNI es obligatorio y/o debe tener un formato valido').exists(),
+    check('sexo', 'Sexo es obligatorio').exists(),
+    check('fecha_nacimiento', 'Fecha de nacimiento es obligatoria').exists(),
+    check('salario', 'Salario es obligatorio').exists(),
+    check('cargo', 'Cargo es obligatorio').exists(),
+    check('departamento_id', 'Departamento es obligatorio').exists(),
+    check('jefe_id', 'Jefe_id es obligatorio y/o null').exists()
+    ], async (req, res) => {
+    const errores = validationResult(req);
+    if (!errores.isEmpty()) {
+        return res.json(errores.array());
+    }
+
     const result = await Empleado.create(req.body);
     if (result['affectedRows'] === 1) {
         const empleado = await Empleado.getById(result['insertId']);
