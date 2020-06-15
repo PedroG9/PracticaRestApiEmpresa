@@ -1,0 +1,63 @@
+GET http://localhost:3000/api/empleados
+
+###
+
+POST http://localhost:3000/api/empleados
+Content-Type: application/json
+{
+    "nombre": "Margarita",
+    "dni": "34876129",
+    "sexo": "F",
+    "fecha_nacimiento": "16-05-1985",
+    "fecha_incorporacion": "23-10-2001",
+    "salario": "2500.00",
+    "cargo": "Secretaria",
+    "departamento_id": "5",
+    "jefe_id": "4"
+}
+
+###
+
+PUT http://localhost:3000/api/empleados/4
+Content-Type: application/json
+{
+    "nombre": "",
+    "dni": "",
+    "sexo": "",
+    "fecha_nacimiento": "",
+    "fecha_incorporacion": "",
+    "salario": "",
+    "cargo": "",
+    "departamento_id": "",
+    "jefe_id": ""
+}
+
+###
+
+DELETE http://localhost:3000/api/empleados/[numero]
+
+###
+
+GET http://localhost:3000/api/departamentos
+
+###
+
+POST http://localhost:3000/api/departamentos
+Content-Type: application/json
+{
+    "nombre": "Logistica",
+    "ciudad": "Madrid",
+}
+
+###
+
+PUT http://localhost:3000/api/departamentos/[numero]
+Content-Type: application/json
+{
+    "nombre": "",
+    "ciudad": "",
+}
+
+###
+
+DELETE http://localhost:3000/api/departamentos/[numero]
